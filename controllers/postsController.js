@@ -18,6 +18,17 @@ function show(req, res) {
 
     const post = posts.find((post) => post.tags.includes(tag))
 
+
+    //Manage not found error
+    if (!post) {
+        const error = {
+            error: true,
+            status: '404 not found'
+        }
+
+        return res.json(error)
+    }
+
     res.json(post)
 }
 
@@ -40,6 +51,15 @@ function modify(req, res) {
 function destroy(req, res) {
     const post = posts.find(post => post.id == req.params.id)
 
+    //Manage not found error
+    if (!post) {
+        const error = {
+            error: true,
+            status: '404 not found'
+        }
+
+        return res.json(error)
+    }
 
     //remove post based on id
     posts.splice(posts.indexOf(post), 1)
