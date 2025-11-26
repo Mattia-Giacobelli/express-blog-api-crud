@@ -10,7 +10,7 @@ const router = express.Router()
 router.get('/', postsController.index)
 
 //Show 
-router.get('/:id', postsController.show)
+router.get('/:tag', postsController.show)
 
 //Store
 router.post('/', postsController.store)

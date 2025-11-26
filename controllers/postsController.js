@@ -8,7 +8,16 @@ function index(req, res) {
 
 //Show 
 function show(req, res) {
-    const post = posts.find((post) => post.id == req.params.id)
+
+    //Id filtering
+    // const post = posts.find((post) => post.id == req.params.id)
+
+    //tag filtering
+    const tag = req.params.tag.charAt(0).toUpperCase() + req.params.tag.slice(1)
+    console.log(tag);
+
+    const post = posts.find((post) => post.tags.includes(tag))
+
     res.json(post)
 }
 
