@@ -1,5 +1,5 @@
 //Import posts array
-const posts = require('../posts')
+const posts = require('../data/posts')
 
 //index
 function index(req, res) {
@@ -29,7 +29,16 @@ function modify(req, res) {
 
 //Destroy
 function destroy(req, res) {
-    res.send(`Delete post with id:${req.params.id}`)
+    const post = posts.find(post => post.id == req.params.id)
+
+
+    //remove post based on id
+    posts.splice(posts.indexOf(post), 1)
+
+    console.log(posts);
+
+    res.sendStatus(204)
+
 }
 
 
