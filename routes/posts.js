@@ -1,40 +1,27 @@
 const express = require('express')
 
-//Import posts array
-const posts = require('../posts')
+//Import posts controller
+const postsController = require('../controllers/postsController')
 
 // create posts router
 const router = express.Router()
 
 //Index 
-router.get('/', (req, res) => {
-    res.json(posts)
-})
+router.get('/', postsController.index)
 
 //Show 
-router.get('/:id', (req, res) => {
-    const post = posts.find((post) => post.id == req.params.id)
-    res.json(post)
-})
+router.get('/:id', postsController.show)
 
 //Store
-router.post('/', (req, res) => {
-    res.send('Add new posts')
-})
+router.post('/', postsController.store)
 
 //Update
-router.put('/:id', (req, res) => {
-    res.send(`Update post with id:${req.params.id}`)
-})
+router.put('/:id', postsController.update)
 
 //Modify 
-router.patch('/:id', (req, res) => {
-    res.send(`Modify post with id:${req.params.id}`)
-})
+router.patch('/:id', postsController.modify)
 
 //Destroy
-router.delete('/:id', (req, res) => {
-    res.send(`Delete post with id:${req.params.id}`)
-})
+router.delete('/:id', postsController.destroy)
 
 module.exports = router
