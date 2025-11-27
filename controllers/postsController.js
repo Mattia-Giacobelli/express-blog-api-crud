@@ -34,7 +34,12 @@ function show(req, res) {
 
 //Store
 function store(req, res) {
-    res.send('Add new posts')
+    console.log(req.body);
+
+    posts.push(req.body)
+
+    res.json({ status: '201', ...req.body })
+
 }
 
 //Update

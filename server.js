@@ -3,7 +3,11 @@ const postsRouter = require('./routes/posts')
 const app = express()
 const port = 3000
 
+app.use(express.json())
+
+
 app.use('/api/posts/', postsRouter)
+
 
 app.get('/', (req, res) => {
     res.send("My blog's server")
