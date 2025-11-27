@@ -44,7 +44,19 @@ function store(req, res) {
 
 //Update
 function update(req, res) {
-    res.send(`Update post with id:${req.params.id}`)
+
+    const modifyPost = posts.filter(post => post.id != req.params.id)
+    console.log(modifyPost);
+
+    const newPost = {
+        "id": Date.now(),
+        ...req.body
+
+    }
+
+    posts.push(newPost)
+
+    res.json({ status: '201', posts })
 }
 
 //Modify 
