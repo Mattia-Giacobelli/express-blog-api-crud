@@ -45,16 +45,32 @@ function store(req, res) {
 //Update
 function update(req, res) {
 
-    const modifyPost = posts.filter(post => post.id != req.params.id)
-    console.log(modifyPost);
+    //Select the single post
+    const post = posts.find(post => post.id == req.params.id)
 
-    const newPost = {
-        "id": Date.now(),
-        ...req.body
+    //Manage not found error
+    if (!post) {
+        const error = {
+            error: true,
+            status: '404 not found'
+        }
 
+        return res.json(error)
     }
 
-    posts.push(newPost)
+    //remove post based on id
+    posts.splice(posts.indexOf(post), 1)
+
+
+    post.title = req.body.title
+    post.content = req.body.content
+    post.image = req.body.image
+    post.tags = req.body.tags
+
+
+    console.log(post);
+
+    posts.push(post)
 
     res.json({ status: '201', posts })
 }
