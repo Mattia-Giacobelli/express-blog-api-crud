@@ -36,9 +36,17 @@ function show(req, res) {
 function store(req, res) {
     console.log(req.body);
 
-    posts.push(req.body)
+    const post = {
 
-    res.json({ status: '201', ...req.body })
+        "title": req.body.title,
+        "content": req.body.content,
+        "image": req.body.image,
+        "tags": req.body.tags,
+    }
+
+    posts.push(post)
+
+    res.json({ status: '201', ...posts })
 
 }
 
@@ -55,7 +63,7 @@ function update(req, res) {
             status: '404 not found'
         }
 
-        return res.json(error)
+        return res.status(404).json(error)
     }
 
     //remove post based on id
@@ -91,7 +99,7 @@ function destroy(req, res) {
             status: '404 not found'
         }
 
-        return res.json(error)
+        return res.status(404).json(error)
     }
 
     //remove post based on id
