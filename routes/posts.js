@@ -1,6 +1,5 @@
 const express = require('express')
-const app = express()
-const notFound = require('../middlewares/notFound')
+
 
 //Import posts controller
 const postsController = require('../controllers/postsController')
@@ -27,7 +26,6 @@ router.patch('/:id', postsController.modify)
 router.delete('/:id', postsController.destroy)
 
 
-//Manage not found error
-app.use(notFound)
+
 
 module.exports = router

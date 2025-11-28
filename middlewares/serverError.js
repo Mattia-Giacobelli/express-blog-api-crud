@@ -1,4 +1,7 @@
-function serverError(err, req, res) {
+function serverError(err, req, res, next) {
+
+    console.log('500 works');
+
 
     res.status(500)
     res.json({

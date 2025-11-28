@@ -12,6 +12,7 @@ function show(req, res) {
     //Id filtering
     // const post = posts.find((post) => post.id == req.params.id)
 
+    pane.Crudo()
     //tag filtering
     const tag = req.params.tag.charAt(0).toUpperCase() + req.params.tag.slice(1)
     console.log(tag);

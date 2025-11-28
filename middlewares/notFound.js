@@ -1,4 +1,4 @@
-function notFound(req, res) {
+function notFound(err, req, res, next) {
     res.status(404)
 
     res.json({
